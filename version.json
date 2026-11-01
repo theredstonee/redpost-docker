@@ -1,12 +1,12 @@
 {
-  "version": "1.1.2",
+  "version": "1.1.3",
   "datum": "2026-11-01",
   "hinweise": {
     "de": [
-      "Behoben: PDF-Anhänge blieben beim Ansehen im Browser leer."
+      "Neues Auswahlmenü überall: Die Listen des Browsers sind ersetzt, zum Beispiel beim Absender im Schreibfenster. Es sieht in hell und dunkel gleich aus und lässt sich mit Maus und Tastatur bedienen."
     ],
     "en": [
-      "Fixed: PDF attachments stayed blank when viewed in the browser."
+      "New selection menu everywhere: the browser’s own lists are gone, for example for the sender in the compose window. It looks the same in light and dark and works with mouse and keyboard."
     ]
   }
 }
