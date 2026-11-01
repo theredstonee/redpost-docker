@@ -602,7 +602,7 @@ SKRIPT
   fi
   [ -n "$ausloeser" ] || { DIENST_GRUND="$(s "Weder systemd noch cron laufen auf diesem Server – ohne einen davon kann der Knopf im Panel nichts ausloesen." "Neither systemd nor cron is running on this server – without one the panel button cannot trigger anything.")"; return 1; }
   auftrags_ordner "$daten"
-  printf '%s\naktionen=update tunnel mail anfragen webserver\nstand=5\n' "$PWD" | ablegen "$daten/.updater" \
+  printf '%s\naktionen=update tunnel mail mail-an mail-aus mail-ordner-weg anfragen webserver\nstand=5\n' "$PWD" | ablegen "$daten/.updater" \
     || { DIENST_GRUND="$(s "Die Marker-Datei liess sich im Datenordner nicht ablegen." "The marker file could not be written into the data folder.")"; return 1; }
   # gleich einmal fuer den Assistenten festhalten, welcher Webserver da ist (spaeter frisch per Aktion „webserver-info“)
   { ws_info | ablegen "$daten/.webserver-info"; } 2>/dev/null || true
