@@ -1,18 +1,12 @@
 {
-  "version": "1.1.1",
+  "version": "1.1.2",
   "datum": "2026-11-01",
   "hinweise": {
     "de": [
-      "Kalender auf dem Handy: Eigene Kalender und „Neuer Termin“ sind jetzt über eine Schublade erreichbar, die Stundenspalte bleibt beim Blättern in der Woche stehen, der Monat lässt sich scrollen.",
-      "Verwaltung auf dem Handy: Der Kopf nimmt weniger Platz ein, die Menüleiste springt zum aktiven Bereich.",
-      "Oberfläche einheitlicher: gleiche Knöpfe, Karten, Abstände und Rundungen überall. Die Werkzeuge in der Post lassen sich einklappen; „Ausgang“ bleibt sichtbar, solange etwas nicht angekommen ist.",
-      "Texte: „1 Sitzung“ und „3 Sitzungen“ statt „Sitzung(en)“."
+      "Behoben: PDF-Anhänge blieben beim Ansehen im Browser leer."
     ],
     "en": [
-      "Calendar on phones: your calendars and “New event” are now in a drawer, the hour column stays in place while scrolling the week, and the month view scrolls.",
-      "Admin on phones: the header takes up less space and the menu bar jumps to the active section.",
-      "More consistent interface: the same buttons, cards, spacing and corners everywhere. The tools in mail can be collapsed; “Outbox” stays visible while something has not arrived.",
-      "Texts: “1 session” and “3 sessions” instead of “session(s)”."
+      "Fixed: PDF attachments stayed blank when viewed in the browser."
     ]
   }
 }
