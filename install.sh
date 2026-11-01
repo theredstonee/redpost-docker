@@ -270,7 +270,7 @@ if [ -n "$WEG" ]; then
     elif [ -f "$datei" ]; then mkdir -p /root/redpost-backup && cp -a "$datei" "/root/redpost-backup/$(basename "$datei").bak-$stempel" && rm -f "$datei"; neu_laden="ja"; fi
   done
   if [ -n "$neu_laden" ]; then
-    if command -v nginx >/dev/null 2>&1 && nginx -t >/dev/null 2>&1; then systemctl reload nginx 2>/dev/null || nginx -s reload; fi
+    if command -v nginx >/dev/null 2>&1 && nginx -t >/dev/null 2>&1; then systemctl reload nginx 2>/dev/null || nginx -s reload 2>/dev/null || systemctl start nginx 2>/dev/null || nginx || pkill -HUP -o -x nginx; fi
     if command -v apache2ctl >/dev/null 2>&1 && apache2ctl configtest >/dev/null 2>&1; then systemctl reload apache2 2>/dev/null || apache2ctl graceful || true; fi
     if ! command -v apache2ctl >/dev/null 2>&1 && command -v httpd >/dev/null 2>&1 && httpd -t >/dev/null 2>&1; then systemctl reload httpd 2>/dev/null || httpd -k graceful || true; fi
     say "==> Webserver-Eintraege entfernt (Sicherung in /root/redpost-backup)." "==> Web server entries removed (backup in /root/redpost-backup)."
@@ -723,7 +723,7 @@ hsts_sichern() { # der HTTPS-Eintrag (von certbot ergaenzt bzw. angelegt) muss H
   awk -v z="$z" -v m="$muster" '{ print } !d && $0 ~ m { print z; d = 1 }' "$f.bak-hsts" > "$f.neu" && cat "$f.neu" > "$f"
   rm -f "$f.neu"
   case "$vhost_angelegt" in
-    nginx) if nginx -t >/dev/null 2>&1; then systemctl reload nginx 2>/dev/null || nginx -s reload; ok=1; fi ;;
+    nginx) if nginx -t >/dev/null 2>&1; then systemctl reload nginx 2>/dev/null || nginx -s reload 2>/dev/null || systemctl start nginx 2>/dev/null || nginx || pkill -HUP -o -x nginx; ok=1; fi ;;
     apache2) if apache2ctl configtest >/dev/null 2>&1; then systemctl reload apache2 2>/dev/null || apache2ctl graceful; ok=1; fi ;;
     httpd) if httpd -t >/dev/null 2>&1; then systemctl reload httpd 2>/dev/null || httpd -k graceful; ok=1; fi ;;
   esac
@@ -778,7 +778,7 @@ server {
       [ -f "$datei" ] && tu cp -a "$datei" "$datei.bak-$stempel"
       if [ "${RP_DRY_RUN:-}" = "1" ]; then echo "    ($(s Probelauf "dry run")) $datei:"; echo "$inhalt" | sed 's/^/        /'; else printf '%s\n' "$inhalt" > "$datei"; fi
       [ -n "$link" ] && tu ln -sf "$datei" "$link"
-      if tu nginx -t; then tu systemctl reload nginx 2>/dev/null || tu nginx -s reload; vhost_angelegt="$webserver"
+      if tu nginx -t; then tu systemctl reload nginx 2>/dev/null || tu nginx -s reload 2>/dev/null || tu systemctl start nginx 2>/dev/null || tu nginx || tu pkill -HUP -o -x nginx; vhost_angelegt="$webserver"
       else say "    FEHLER: nginx -t schlaegt fehl — Datei $datei bitte pruefen (Backup: $datei.bak-$stempel)." "    ERROR: nginx -t fails — please check $datei (backup: $datei.bak-$stempel)."; fi
     else
       if [ "$webserver" = "apache2" ]; then datei=/etc/apache2/sites-available/redpost.conf; else datei=/etc/httpd/conf.d/redpost.conf; fi
@@ -1098,7 +1098,7 @@ kurz_weg() {
   [ -n "$kurz_datei" ] || return 0
   if [ "$kurz_web" = "apache2" ]; then a2dissite -q redpost-setup.conf >/dev/null 2>&1 || true; fi
   rm -f "$kurz_datei" ${kurz_link:+"$kurz_link"}
-  case "$kurz_web" in nginx) nginx -t >/dev/null 2>&1 && { systemctl reload nginx 2>/dev/null || nginx -s reload; } ;; apache2) systemctl reload apache2 ;; httpd) systemctl reload httpd ;; esac
+  case "$kurz_web" in nginx) nginx -t >/dev/null 2>&1 && { systemctl reload nginx 2>/dev/null || nginx -s reload 2>/dev/null || systemctl start nginx 2>/dev/null || nginx || pkill -HUP -o -x nginx; } ;; apache2) { systemctl reload apache2 2>/dev/null || apache2ctl graceful; } ;; httpd) { systemctl reload httpd 2>/dev/null || httpd -k graceful; } ;; esac
   say "==> Kurzzeit-Eintrag fuer http://${ip} wieder entfernt." "==> Temporary entry for http://${ip} removed again."
   kurz_datei=""
 }
@@ -1131,7 +1131,7 @@ if [ "$MODUS" = "port" ] && [ -z "$vhost_angelegt" ] && { [ -z "$DOMAIN" ] || [ 
         "    location / {" "        proxy_pass http://127.0.0.1:${PORT};" "        proxy_set_header Host \$host;" "        proxy_set_header X-Real-IP \$remote_addr;" \
         "        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;" "        proxy_set_header X-Forwarded-Proto \$scheme;" "    }" "}" > "$kurz_datei"
       [ -n "$kurz_link" ] && ln -sf "$kurz_datei" "$kurz_link"
-      if nginx -t >/dev/null 2>&1; then systemctl reload nginx 2>/dev/null || nginx -s reload; else say "    nginx -t schlaegt fehl — Kurzzeit-Eintrag wieder entfernt." "    nginx -t fails — temporary entry removed again."; kurz_weg; fi
+      if nginx -t >/dev/null 2>&1; then systemctl reload nginx 2>/dev/null || nginx -s reload 2>/dev/null || systemctl start nginx 2>/dev/null || nginx || pkill -HUP -o -x nginx; else say "    nginx -t schlaegt fehl — Kurzzeit-Eintrag wieder entfernt." "    nginx -t fails — temporary entry removed again."; kurz_weg; fi
     else
       if [ "$kurz_web" = "apache2" ]; then kurz_datei=/etc/apache2/sites-available/redpost-setup.conf; else kurz_datei=/etc/httpd/conf.d/redpost-setup.conf; fi
       printf '%s\n' "# RedPost — nur fuer die Einrichtung, entfernt install.sh wieder" "<VirtualHost *:80>" "    ServerName ${ip}" ${hinter_router:+"    ServerAlias ${ip_pub}"} "    ProxyPreserveHost On" \
