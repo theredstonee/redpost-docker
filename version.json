@@ -1,12 +1,16 @@
 {
-  "version": "1.1.3",
+  "version": "1.1.4",
   "datum": "2026-11-01",
   "hinweise": {
     "de": [
-      "Neues Auswahlmenü überall: Die Listen des Browsers sind ersetzt, zum Beispiel beim Absender im Schreibfenster. Es sieht in hell und dunkel gleich aus und lässt sich mit Maus und Tastatur bedienen."
+      "Behoben: Der eigene Mailserver ließ sich nicht starten, weil RedPost den Dienst auf dem Server fälschlich für zu alt hielt. Auch das Löschen der Mail-Ordner entfernter Postfächer lief deshalb nicht.",
+      "Behoben: Der Installer zeigte das Logo und die Beschreibung eines anderen Produkts.",
+      "Behoben: Die Einrichtung des Webservers brach ab, wenn nginx gerade nicht lief."
     ],
     "en": [
-      "New selection menu everywhere: the browser’s own lists are gone, for example for the sender in the compose window. It looks the same in light and dark and works with mouse and keyboard."
+      "Fixed: the built-in mail server could not be started because RedPost wrongly considered the service on the server too old. Deleting the mail folders of removed mailboxes did not run for the same reason.",
+      "Fixed: the installer showed the logo and description of another product.",
+      "Fixed: web server setup failed when nginx was not running."
     ]
   }
 }
