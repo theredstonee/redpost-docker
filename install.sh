@@ -252,8 +252,8 @@ if [ -n "$WEG" ]; then
   # Update-Dienst
   rm -f /etc/cron.d/redpost-update
   if [ -f /etc/systemd/system/redpost-update.path ]; then
-    systemctl disable --now redpost-update.path >/dev/null 2>&1 || true
-    rm -f /etc/systemd/system/redpost-update.path /etc/systemd/system/redpost-update.service /usr/local/bin/redpost-update
+    systemctl disable --now redpost-update.path redpost-update.timer >/dev/null 2>&1 || true
+    rm -f /etc/systemd/system/redpost-update.path /etc/systemd/system/redpost-update.service /etc/systemd/system/redpost-update.timer /usr/local/bin/redpost-update
     systemctl daemon-reload || true
   fi
   # Unraid: Dienst + Zeitplan auf dem USB-Stick
@@ -562,9 +562,13 @@ SKRIPT
   chmod 755 /usr/local/bin/redpost-update.neu && mv -f /usr/local/bin/redpost-update.neu /usr/local/bin/redpost-update
   local ausloeser=""
   if command -v systemctl >/dev/null 2>&1 && [ -d /run/systemd/system ]; then
-    printf '%s\n' "[Unit]" "Description=RedPost: Update-Anfrage aus dem Panel" "[Path]" "PathExists=$daten/.update-anfrage" "[Install]" "WantedBy=multi-user.target" > /etc/systemd/system/redpost-update.path
-    printf '%s\n' "[Unit]" "Description=RedPost aktualisieren" "[Service]" "Type=oneshot" "ExecStart=/usr/local/bin/redpost-update" > /etc/systemd/system/redpost-update.service
-    if systemctl daemon-reload && systemctl enable --now redpost-update.path >/dev/null 2>&1; then ausloeser="systemd"; rm -f /etc/cron.d/redpost-update; fi
+    auftrags_ordner "$daten"
+    printf '%s\n' "[Unit]" "Description=RedPost: Auftrag aus dem Panel" "[Path]" "PathExists=$daten/.update-anfrage" "DirectoryNotEmpty=$daten/.anfragen" "[Install]" "WantedBy=multi-user.target" > /etc/systemd/system/redpost-update.path
+    # StartLimitIntervalSec=0: viele Auftraege kurz hintereinander duerfen die Ueberwachung nie abschalten
+    printf '%s\n' "[Unit]" "Description=RedPost aktualisieren" "StartLimitIntervalSec=0" "ConditionDirectoryNotEmpty=|$daten/.anfragen" "ConditionPathExists=|$daten/.update-anfrage" "[Service]" "Type=oneshot" "ExecStart=/usr/local/bin/redpost-update" > /etc/systemd/system/redpost-update.service
+    # Rueckfallebene: jede Minute nachsehen, falls die Pfad-Ueberwachung doch einmal ausfaellt
+    printf '%s\n' "[Unit]" "Description=RedPost: Auftraege nachsehen" "[Timer]" "OnBootSec=1min" "OnUnitInactiveSec=1min" "AccuracySec=10s" "[Install]" "WantedBy=timers.target" > /etc/systemd/system/redpost-update.timer
+    if systemctl daemon-reload && systemctl enable --now redpost-update.path >/dev/null 2>&1; then ausloeser="systemd"; rm -f /etc/cron.d/redpost-update; systemctl reset-failed redpost-update.path redpost-update.service >/dev/null 2>&1; systemctl restart redpost-update.path >/dev/null 2>&1; systemctl enable --now redpost-update.timer >/dev/null 2>&1; fi
   fi
   # Unraid: kein systemd, /etc und /usr/local liegen im Arbeitsspeicher (nach dem Neustart weg), und cron liest
   # /etc/cron.d als Crontabs je Benutzer (Datei „root“, ohne Benutzerfeld) — eine eigene Datei dort laeuft nie.
@@ -573,9 +577,9 @@ SKRIPT
   if [ -z "$ausloeser" ] && [ -f /etc/unraid-version ] && [ -d /boot/config ]; then
     mkdir -p /boot/config/plugins/redpost /boot/config/plugins/dynamix
     cp -f /usr/local/bin/redpost-update /boot/config/plugins/redpost/redpost-update
-    local zeile="* * * * * [ -f \"$daten/.update-anfrage\" ] && bash /boot/config/plugins/redpost/redpost-update >/dev/null 2>&1"
-    printf '%s\n' "# RedPost: Update-Anfrage aus dem Panel (angelegt von install.sh)" "$zeile" "" > /boot/config/plugins/dynamix/redpost-update.cron
-    rm -f /etc/cron.d/redpost-update
+    local zeile="* * * * * bash /boot/config/plugins/redpost/redpost-update >/dev/null 2>&1"
+    printf '%s\n' "# RedPost: Auftraege aus dem Panel (angelegt von install.sh)" "$zeile" "" > /boot/config/plugins/dynamix/redpost-update.cron
+    rm -f /etc/cron.d/redpost-update /boot/config/plugins/redpost/redpost.cron
     # steht der Eintrag in der Crontab, die Unraid-cron liest? (ohne Pipe: install.sh laeuft mit pipefail)
     rp_cron_drin() { local alle; alle="$(cat /etc/cron.d/root 2>/dev/null || true)"; case "$alle" in *plugins/redpost/redpost-update*) return 0 ;; esac; return 1; }
     # 1. Unraid-Weg
@@ -593,7 +597,7 @@ SKRIPT
   fi
   # Ohne systemd (z. B. Container-Server, Alpine): cron schaut jede Minute nach einer Anfrage
   if [ -z "$ausloeser" ] && [ -d /etc/cron.d ] && { pgrep -x cron >/dev/null 2>&1 || pgrep -x crond >/dev/null 2>&1; }; then
-    printf '%s\n' "# RedPost: Update-Anfrage aus dem Panel (angelegt von install.sh, ohne systemd)" "* * * * * root [ -f \"$daten/.update-anfrage\" ] && /usr/local/bin/redpost-update >/dev/null 2>&1" > /etc/cron.d/redpost-update
+    printf '%s\n' "# RedPost: Auftrag aus dem Panel (angelegt von install.sh, ohne systemd)" "* * * * * root /usr/local/bin/redpost-update >/dev/null 2>&1" > /etc/cron.d/redpost-update
     chmod 644 /etc/cron.d/redpost-update; ausloeser="cron"
   fi
   [ -n "$ausloeser" ] || { DIENST_GRUND="$(s "Weder systemd noch cron laufen auf diesem Server – ohne einen davon kann der Knopf im Panel nichts ausloesen." "Neither systemd nor cron is running on this server – without one the panel button cannot trigger anything.")"; return 1; }
