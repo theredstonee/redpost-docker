@@ -1,0 +1,33 @@
+# RedPost Pro — ein WEITERER Server (Knoten) fuer eine bestehende Installation.
+# Nur die App, ohne eigene Datenbank: sie verbindet sich mit der Datenbank des ersten Servers.
+#
+#   1. Datenbank des ersten Servers fuer diesen erreichbar machen (privates Netz/VPN, Firewall nur
+#      fuer deine Server) — z. B. im docker-compose.yml des ersten Servers unter db:
+#        ports: ["10.0.0.1:5432:5432"]
+#   2. Dateien: S3 nutzen (Panel → Speicher & Server) — ODER /data auf allen Servern als gemeinsamen
+#      Ordner (NFS) einbinden und unten statt des Volumes eintragen.
+#   3. Hier eine .env anlegen:  DB_URL=postgres://redpost:<passwort>@10.0.0.1:5432/redpost
+#                               RP_NODE_NAME=server-2   RP_PORT=3000
+#   4. docker compose -f compose.node.yml up -d
+#   5. Im Lastverteiler (Caddy, nginx, Traefik) beide Server eintragen, mit Sitzungsbindung.
+#
+# Mehrere Server gleichzeitig gehoeren zu RedPost Pro. Ohne Lizenz pausiert ein zusaetzlicher
+# Server nach 10 Minuten (der erste laeuft normal weiter).
+services:
+  app:
+    image: ghcr.io/theredstonee/redpost:latest
+    restart: unless-stopped
+    environment:
+      NUXT_DB_URL: ${DB_URL:?Bitte DB_URL in .env setzen}
+      RP_NODE_NAME: ${RP_NODE_NAME:-}
+      TZ: ${TZ:-Europe/Berlin}
+      # RP_NODE_ROLE=web: dieser Server liefert nur aus, Vorschaubilder/Importe machen die anderen
+      RP_NODE_ROLE: ${RP_NODE_ROLE:-}
+    volumes:
+      - dateien:/data
+    ports:
+      - "${RP_BIND:-127.0.0.1}:${RP_PORT:-3000}:3000"
+    stop_grace_period: 20s
+
+volumes:
+  dateien:

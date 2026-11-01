@@ -1,0 +1,9 @@
+# RedPost Mailserver mit Caddy: docker-mailserver nimmt das Zertifikat, das Caddy fuer RP_MAIL_HOST holt (nur lesen).
+services:
+  mail:
+    volumes:
+      - caddy_data:/rp-caddy:ro
+    environment:
+      SSL_TYPE: manual
+      SSL_CERT_PATH: /rp-caddy/caddy/certificates/acme-v02.api.letsencrypt.org-directory/${RP_MAIL_HOST}/${RP_MAIL_HOST}.crt
+      SSL_KEY_PATH: /rp-caddy/caddy/certificates/acme-v02.api.letsencrypt.org-directory/${RP_MAIL_HOST}/${RP_MAIL_HOST}.key

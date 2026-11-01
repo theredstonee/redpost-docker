@@ -1,0 +1,99 @@
+# RedPost — By TheRedStonee · https://www.theredstonee.de
+#
+# Start:   docker compose up -d
+# Danach:  die Adresse aus der Installation im Browser oeffnen und dem Assistenten folgen.
+# Den Setup-Code zeigt:  docker compose logs app | grep Setup-Code
+#
+# Diese Datei enthaelt App, Datenbank und Kalender/Kontakte (Radicale). Wie RedPost nach aussen kommt, legt
+# COMPOSE_FILE in der .env fest (install.sh setzt das automatisch):
+#   docker-compose.yml:compose.caddy.yml   eigener Caddy auf Port 80/443 mit automatischem HTTPS
+#   docker-compose.yml:compose.port.yml    nur ein Port auf 127.0.0.1 hinter deinem nginx/Apache
+#
+# Eigener Mailserver (optional): wird im Panel eingeschaltet (Verwaltung → Domains & Mailserver). Der Update-Dienst
+# haengt dann compose.mail.yml an COMPOSE_FILE an — ohne eigenen Mailserver nutzt RedPost die Postfaecher bei
+# deinem bisherigen Anbieter (IMAP/SMTP).
+#
+# Cloudflare Tunnel (optional): cloudflared laeuft nur mit dem Profil "tunnel" — eingeschaltet im Panel unter
+# Einstellungen → Installation (setzt RP_TUNNEL_TOKEN + COMPOSE_PROFILES ueber den Update-Dienst).
+services:
+  app:
+    image: ghcr.io/theredstonee/redpost:latest
+    restart: unless-stopped
+    environment:
+      NUXT_DB_URL: postgres://redpost:${DB_PASSWORD:?Bitte DB_PASSWORD in .env setzen}@db:5432/redpost
+      TZ: ${TZ:-Europe/Berlin}
+      # Notausgang bei verlorener Zwei-Faktor-Anmeldung, siehe README (normalerweise leer).
+      RP_RESET_2FA: ${RP_RESET_2FA:-}
+      # Sprache bis zur Einrichtung (de|en) — fragt install.sh ab; danach gilt die Einstellung im Panel
+      RP_LANG: ${RP_LANG:-de}
+      # Pro — mehrere Server: Name dieses Servers in der Server-Liste (sonst der Container-Name)
+      RP_NODE_NAME: ${RP_NODE_NAME:-}
+      # Kalender und Kontakte (CalDAV/CardDAV): Dienst "radicale" unten, erreichbar nur ueber RedPost (/dav)
+      RP_RADICALE: http://radicale:5232
+      # Cloudflare Tunnel: Status-Abfrage beim cloudflared-Container (Dienst "cloudflared" unten)
+      RP_TUNNEL_METRICS: ${RP_TUNNEL_METRICS:-cloudflared:2000}
+    volumes:
+      - daten:/data
+    depends_on:
+      db:
+        condition: service_healthy
+      radicale:
+        condition: service_started
+    # Nicht direkt nach aussen geoeffnet — erreichbar nur ueber Caddy oder den Port aus compose.port.yml.
+    expose: ["3000"]
+    stop_grace_period: 20s
+    networks: [default, kalender]
+
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: redpost
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: redpost
+    volumes:
+      - db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U redpost -d redpost"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  # Kalender & Kontakte. Kennt keine eigenen Passwoerter: RedPost prueft die Anmeldung (Geraete-Passwort) und reicht
+  # das Konto als X-Remote-User weiter — deshalb NIE nach aussen oeffnen (nur im Compose-Netz, kein ports:).
+  radicale:
+    image: tomsquest/docker-radicale:3.9.0.0
+    restart: unless-stopped
+    environment:
+      TAKE_FILE_OWNERSHIP: "false"
+    volumes:
+      - radicale:/data
+      - ./radicale.conf:/config/config:ro
+    expose: ["5232"]
+    read_only: true
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    cap_add: ["SETUID", "SETGID", "CHOWN", "KILL"]
+    networks: [kalender]
+
+  cloudflared:
+    image: cloudflare/cloudflared:2026.9.3
+    profiles: ["tunnel"]
+    restart: unless-stopped
+    # Ziel im Cloudflare-Dashboard: http://app:3000 (die App in diesem Compose-Netz)
+    command: tunnel --no-autoupdate --metrics 0.0.0.0:2000 run
+    environment:
+      TUNNEL_TOKEN: ${RP_TUNNEL_TOKEN:-}
+    depends_on:
+      - app
+
+volumes:
+  db:
+  daten:
+  radicale:
+
+networks:
+  default:
+  # nur App ↔ Radicale: Radicale vertraut X-Remote-User — kein anderer Dienst darf es erreichen
+  kalender:
+    internal: true

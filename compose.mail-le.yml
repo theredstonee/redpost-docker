@@ -1,0 +1,7 @@
+# RedPost Mailserver mit nginx/Apache auf dem Server: das Zertifikat holt certbot fuer RP_MAIL_HOST (nur lesen).
+services:
+  mail:
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    environment:
+      SSL_TYPE: letsencrypt
