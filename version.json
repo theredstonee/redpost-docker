@@ -1,24 +1,18 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "datum": "2026-11-01",
   "hinweise": {
     "de": [
-      "Mehrere Absender-Adressen: Unter „Von“ wählst du, von welcher Adresse du schreibst, mit eigenem Namen und eigener Signatur. Auf dem eigenen Mailserver erscheinen Aliase von selbst. Bei fremden Mailservern fragt RedPost einmal am Tag, welche Adressen zu deinem Login gehören, ohne etwas zu versenden. Weitere Adressen bestätigst du per Code. Antworten gehen von der Adresse, an die geschrieben wurde.",
-      "Zustellbestätigung und Status je Empfänger: Du kannst anfordern, dass der Mailserver die Zustellung meldet. Eingehende Zustell- und Lesebestätigungen werden ausgewertet und an der gesendeten Mail gezeigt: zugestellt, gelesen oder nicht zugestellt mit Grund.",
-      "Neuer Bereich „Ausgang“: Geplante Mails und alles, was nicht gesendet oder nicht zugestellt wurde, auf einen Blick, mit „Erneut senden“. Fehlschläge verschwinden nicht mehr still.",
-      "Profilbilder: Fotos aus den Kontakten, eigenes Profilbild und Firmenlogos (BIMI nur bei bestandener Absender-Prüfung, sonst Website-Symbol). Dein Server holt Logos einmal je Domain; nichts geht an Dritte. Abschaltbar je Konto und für die ganze Installation.",
-      "Kontakte: Gruppen, die sich beim Schreiben als Verteiler einsetzen lassen, und Fotos. Behoben: Beim Bearbeiten gingen weitere Anschriften und Webseiten, ein eigener Anzeigename und zweite Vornamen verloren.",
-      "Webmail: Mehrfachauswahl, in Ordner verschieben, eigene Ordner anlegen, umbenennen und löschen, Weiterleiten behält die Anhänge, Weiterleiten als Anhang, Original anzeigen, .eml herunterladen, Drucken, Absender sperren. Entwürfe behalten die gewählte Absender-Adresse.",
-      "Oberfläche: Auf dem Handy jetzt mit Ordner-Schublade, Neu-Knopf und Zurück in den Kontakten. Besser lesbare Nebenschrift, lesbare Knöpfe auch bei hellen Akzentfarben, aufgeräumte Leisten über der Mail-Liste und im Lesebereich, Bedienung per Tastatur verbessert."
+      "Kalender auf dem Handy: Eigene Kalender und „Neuer Termin“ sind jetzt über eine Schublade erreichbar, die Stundenspalte bleibt beim Blättern in der Woche stehen, der Monat lässt sich scrollen.",
+      "Verwaltung auf dem Handy: Der Kopf nimmt weniger Platz ein, die Menüleiste springt zum aktiven Bereich.",
+      "Oberfläche einheitlicher: gleiche Knöpfe, Karten, Abstände und Rundungen überall. Die Werkzeuge in der Post lassen sich einklappen; „Ausgang“ bleibt sichtbar, solange etwas nicht angekommen ist.",
+      "Texte: „1 Sitzung“ und „3 Sitzungen“ statt „Sitzung(en)“."
     ],
     "en": [
-      "Multiple sender addresses: under “From” you choose which address to write from, with its own name and signature. On the built-in mail server, aliases appear by themselves. On external mail servers RedPost asks once a day which addresses belong to your login, without sending anything. Further addresses are confirmed with a code. Replies use the address that was written to.",
-      "Delivery receipts and status per recipient: you can ask the mail server to report delivery. Incoming delivery and read receipts are evaluated and shown on the sent e-mail: delivered, read, or not delivered with the reason.",
-      "New “Outbox”: scheduled e-mails and everything that was not sent or not delivered at a glance, with “Send again”. Failures no longer vanish silently.",
-      "Profile pictures: photos from contacts, your own picture and company logos (BIMI only when the sender check passed, otherwise the website icon). Your server fetches logos once per domain; nothing goes to third parties. Can be switched off per account and for the whole installation.",
-      "Contacts: groups you can use as distribution lists when writing, and photos. Fixed: editing a contact lost further addresses and websites, a custom display name and middle names.",
-      "Webmail: multiple selection, move to folder, create, rename and delete your own folders, forwarding keeps attachments, forward as attachment, show original, download .eml, print, block sender. Drafts keep the chosen sender address.",
-      "Interface: on phones there is now a folder drawer, a new-mail button and a back button in contacts. More readable secondary text, readable buttons with light accent colours too, tidier bars above the mail list and in the reading pane, better keyboard use."
+      "Calendar on phones: your calendars and “New event” are now in a drawer, the hour column stays in place while scrolling the week, and the month view scrolls.",
+      "Admin on phones: the header takes up less space and the menu bar jumps to the active section.",
+      "More consistent interface: the same buttons, cards, spacing and corners everywhere. The tools in mail can be collapsed; “Outbox” stays visible while something has not arrived.",
+      "Texts: “1 session” and “3 sessions” instead of “session(s)”."
     ]
   }
 }
