@@ -1,20 +1,24 @@
 {
-  "version": "1.0.3",
+  "version": "1.1.0",
   "datum": "2026-11-01",
   "hinweise": {
     "de": [
-      "Behoben: Der Knopf „Lizenz aktivieren“ auf gesperrten Pro-Seiten führte auf eine Fehlerseite statt zu Verwaltung → Pro.",
-      "Behoben: Nach der Anmeldung als Verwaltungskonto ohne Postfach blieb die Seite beim Anmeldeformular stehen und der Browser-Tab fror ein. Die Weiterleitungen zwischen Post und Verwaltung laufen jetzt zentral vor dem Seitenaufbau.",
-      "Einrichtung: Die Erkennung der Mailserver einer Domain probiert jetzt auch den eigenen Server der Domain (MX-Eintrag, mail., imap., smtp.) und nimmt nur Server, deren Ports wirklich antworten — bei Wildcard-DNS wurde vorher ein Name geraten, unter dem kein Mailserver lief.",
-      "Einrichtung: Von Hand eingetragene IMAP- und SMTP-Server werden nicht mehr vom (langsameren) automatischen Vorschlag überschrieben.",
-      "Update-Dienst: Aufträge aus dem Panel (Webserver einrichten, Mailserver, Tunnel) werden zuverlässig abgeholt — bitte einmal update.sh ausführen."
+      "Mehrere Absender-Adressen: Unter „Von“ wählst du, von welcher Adresse du schreibst, mit eigenem Namen und eigener Signatur. Auf dem eigenen Mailserver erscheinen Aliase von selbst. Bei fremden Mailservern fragt RedPost einmal am Tag, welche Adressen zu deinem Login gehören, ohne etwas zu versenden. Weitere Adressen bestätigst du per Code. Antworten gehen von der Adresse, an die geschrieben wurde.",
+      "Zustellbestätigung und Status je Empfänger: Du kannst anfordern, dass der Mailserver die Zustellung meldet. Eingehende Zustell- und Lesebestätigungen werden ausgewertet und an der gesendeten Mail gezeigt: zugestellt, gelesen oder nicht zugestellt mit Grund.",
+      "Neuer Bereich „Ausgang“: Geplante Mails und alles, was nicht gesendet oder nicht zugestellt wurde, auf einen Blick, mit „Erneut senden“. Fehlschläge verschwinden nicht mehr still.",
+      "Profilbilder: Fotos aus den Kontakten, eigenes Profilbild und Firmenlogos (BIMI nur bei bestandener Absender-Prüfung, sonst Website-Symbol). Dein Server holt Logos einmal je Domain; nichts geht an Dritte. Abschaltbar je Konto und für die ganze Installation.",
+      "Kontakte: Gruppen, die sich beim Schreiben als Verteiler einsetzen lassen, und Fotos. Behoben: Beim Bearbeiten gingen weitere Anschriften und Webseiten, ein eigener Anzeigename und zweite Vornamen verloren.",
+      "Webmail: Mehrfachauswahl, in Ordner verschieben, eigene Ordner anlegen, umbenennen und löschen, Weiterleiten behält die Anhänge, Weiterleiten als Anhang, Original anzeigen, .eml herunterladen, Drucken, Absender sperren. Entwürfe behalten die gewählte Absender-Adresse.",
+      "Oberfläche: Auf dem Handy jetzt mit Ordner-Schublade, Neu-Knopf und Zurück in den Kontakten. Besser lesbare Nebenschrift, lesbare Knöpfe auch bei hellen Akzentfarben, aufgeräumte Leisten über der Mail-Liste und im Lesebereich, Bedienung per Tastatur verbessert."
     ],
     "en": [
-      "Fixed: the “Activate licence” button on locked Pro pages led to an error page instead of Admin → Pro.",
-      "Fixed: after signing in as an admin account without a mailbox, the page stayed on the sign-in form and the browser tab froze. Redirects between mail and admin now run centrally before the page is built.",
-      "Setup: detecting a domain’s mail servers now also tries the domain’s own server (MX record, mail., imap., smtp.) and only uses servers whose ports actually answer — with wildcard DNS a name used to be guessed where no mail server ran.",
-      "Setup: IMAP and SMTP servers entered by hand are no longer overwritten by the (slower) automatic suggestion.",
-      "Update service: jobs from the panel (web server setup, mail server, tunnel) are picked up reliably — please run update.sh once."
+      "Multiple sender addresses: under “From” you choose which address to write from, with its own name and signature. On the built-in mail server, aliases appear by themselves. On external mail servers RedPost asks once a day which addresses belong to your login, without sending anything. Further addresses are confirmed with a code. Replies use the address that was written to.",
+      "Delivery receipts and status per recipient: you can ask the mail server to report delivery. Incoming delivery and read receipts are evaluated and shown on the sent e-mail: delivered, read, or not delivered with the reason.",
+      "New “Outbox”: scheduled e-mails and everything that was not sent or not delivered at a glance, with “Send again”. Failures no longer vanish silently.",
+      "Profile pictures: photos from contacts, your own picture and company logos (BIMI only when the sender check passed, otherwise the website icon). Your server fetches logos once per domain; nothing goes to third parties. Can be switched off per account and for the whole installation.",
+      "Contacts: groups you can use as distribution lists when writing, and photos. Fixed: editing a contact lost further addresses and websites, a custom display name and middle names.",
+      "Webmail: multiple selection, move to folder, create, rename and delete your own folders, forwarding keeps attachments, forward as attachment, show original, download .eml, print, block sender. Drafts keep the chosen sender address.",
+      "Interface: on phones there is now a folder drawer, a new-mail button and a back button in contacts. More readable secondary text, readable buttons with light accent colours too, tidier bars above the mail list and in the reading pane, better keyboard use."
     ]
   }
 }
