@@ -1,24 +1,16 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "datum": "2026-11-01",
   "hinweise": {
     "de": [
-      "Erste Fassung von RedPost: Webmail mit Konversationen, Suche, Etiketten, Zurückstellen, Erinnern und Fokus-Modus",
-      "Eigener Mailserver (docker-mailserver) mit Domains, Postfächern, Aliasen, DKIM, DNS-Assistent und Zustellbarkeits-Monitor – oder Postfächer bei deinem bisherigen Anbieter",
-      "Kalender und Kontakte mit Einladungen per Mail; Abgleich mit iPhone, Android, Thunderbird und Outlook (CalDAV/CardDAV)",
-      "Filter und Abwesenheit – per Sieve direkt auf dem Mailserver",
-      "Schutz: Phishing-Warnung, Tracking-Schutz, Wegwerf-Adressen, vertrauliche Mails mit Ablauf und PGP-Verschlüsselung",
-      "Gemeinsame Postfächer, Organisationen mit Kontingenten, Umzug vom alten Anbieter und tägliche Postfach-Sicherung",
-      "Als App installierbar, mit Benachrichtigungen bei neuer Post"
+      "Hinter einem vorhandenen Webserver (nginx, Apache) bietet der Einrichtungsassistent „Eigene Domain“ nicht mehr an — das konnte ohne eigenen Caddy nie klappen und endete mit einem Zertifikatsfehler",
+      "Stattdessen richtet der Assistent Virtual Host, HTTPS über Let’s Encrypt und HSTS per Klick selbst ein (fehlt nginx/Apache, wird er auf Wunsch installiert) — mit Live-Protokoll",
+      "Bestehende Installationen: einmal update.sh ausführen, danach ist der Knopf im Assistenten da"
     ],
     "en": [
-      "First release of RedPost: webmail with conversations, search, labels, snooze, follow-up reminders and focus mode",
-      "Built-in mail server (docker-mailserver) with domains, mailboxes, aliases, DKIM, DNS assistant and deliverability monitor – or mailboxes at your current provider",
-      "Calendar and contacts with e-mail invitations; sync with iPhone, Android, Thunderbird and Outlook (CalDAV/CardDAV)",
-      "Filters and out-of-office replies – via Sieve right on the mail server",
-      "Protection: phishing warnings, tracking protection, disposable addresses, confidential e-mails with expiry and PGP encryption",
-      "Shared mailboxes, organisations with quotas, migration from your old provider and daily mailbox backups",
-      "Installable as an app, with notifications for new mail"
+      "Behind an existing web server (nginx, Apache) the setup wizard no longer offers “Own domain” — it could never work without its own Caddy and ended with a certificate error",
+      "Instead, the wizard sets up the virtual host, HTTPS via Let’s Encrypt and HSTS with one click (installs nginx/Apache if missing) — with a live log",
+      "Existing installations: run update.sh once, then the button is available in the wizard"
     ]
   }
 }
