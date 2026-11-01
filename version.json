@@ -1,16 +1,18 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "datum": "2026-11-01",
   "hinweise": {
     "de": [
-      "Hinter einem vorhandenen Webserver (nginx, Apache) bietet der Einrichtungsassistent „Eigene Domain“ nicht mehr an — das konnte ohne eigenen Caddy nie klappen und endete mit einem Zertifikatsfehler",
-      "Stattdessen richtet der Assistent Virtual Host, HTTPS über Let’s Encrypt und HSTS per Klick selbst ein (fehlt nginx/Apache, wird er auf Wunsch installiert) — mit Live-Protokoll",
-      "Bestehende Installationen: einmal update.sh ausführen, danach ist der Knopf im Assistenten da"
+      "Behoben: Nach der Anmeldung als Verwaltungskonto ohne Postfach blieb die Seite beim Anmeldeformular stehen und der Browser-Tab fror ein. Die Weiterleitungen zwischen Post und Verwaltung laufen jetzt zentral vor dem Seitenaufbau.",
+      "Einrichtung: Die Erkennung der Mailserver einer Domain probiert jetzt auch den eigenen Server der Domain (MX-Eintrag, mail., imap., smtp.) und nimmt nur Server, deren Ports wirklich antworten — bei Wildcard-DNS wurde vorher ein Name geraten, unter dem kein Mailserver lief.",
+      "Einrichtung: Von Hand eingetragene IMAP- und SMTP-Server werden nicht mehr vom (langsameren) automatischen Vorschlag überschrieben.",
+      "Update-Dienst: Aufträge aus dem Panel (Webserver einrichten, Mailserver, Tunnel) werden zuverlässig abgeholt — bitte einmal update.sh ausführen."
     ],
     "en": [
-      "Behind an existing web server (nginx, Apache) the setup wizard no longer offers “Own domain” — it could never work without its own Caddy and ended with a certificate error",
-      "Instead, the wizard sets up the virtual host, HTTPS via Let’s Encrypt and HSTS with one click (installs nginx/Apache if missing) — with a live log",
-      "Existing installations: run update.sh once, then the button is available in the wizard"
+      "Fixed: after signing in as an admin account without a mailbox, the page stayed on the sign-in form and the browser tab froze. Redirects between mail and admin now run centrally before the page is built.",
+      "Setup: detecting a domain’s mail servers now also tries the domain’s own server (MX record, mail., imap., smtp.) and only uses servers whose ports actually answer — with wildcard DNS a name used to be guessed where no mail server ran.",
+      "Setup: IMAP and SMTP servers entered by hand are no longer overwritten by the (slower) automatic suggestion.",
+      "Update service: jobs from the panel (web server setup, mail server, tunnel) are picked up reliably — please run update.sh once."
     ]
   }
 }
