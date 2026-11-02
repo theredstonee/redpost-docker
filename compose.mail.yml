@@ -1,17 +1,7 @@
-# RedPost — eigener Mailserver (docker-mailserver 16, MIT) fuer die Domains der Installation.
-# Wird im Panel eingeschaltet (Verwaltung → Domains & Mailserver); der Update-Dienst haengt diese Datei an COMPOSE_FILE an.
-# Postfaecher, Aliase, Quotas, DKIM, Spamfilter und gesperrte Adressen schreibt RedPost als Dateien in das Volume
-# mailkonfig — der Mailserver liest sie und laedt sich selbst neu (kein docker exec, kein Docker-Socket).
-#
-# Ports: 25 (Empfang), 465 (Versand mit Anmeldung, TLS), 587 (Versand, STARTTLS), 993 (IMAP), 4190 (Sieve-Filter).
-# Ein Mailserver muss von aussen erreichbar sein — RP_MAIL_BIND nur fuer Tests auf 127.0.0.1 setzen.
-# TLS: Zertifikat aus mailkonfig/ssl (von RedPost selbst erzeugt) bzw. die Dateien, die compose.mail-caddy.yml (Caddy)
-# oder compose.mail-le.yml (certbot des Webservers) einhaengen.
 services:
   app:
     volumes:
       - mailkonfig:/mailkonfig
-      # Postfaecher fuer die Sicherung — gehoeren dank DMS_VMAIL_UID dem App-Nutzer (1000), RedPost liest nur
       - maildaten:/maildaten
     environment:
       RP_MAIL: "1"
@@ -20,7 +10,6 @@ services:
       RP_MAIL_INTERN: mail
       RP_MAIL_HOST: ${RP_MAIL_HOST:?RP_MAIL_HOST fehlt in der .env}
       RP_MAIL_SIEVE_PORT: "4190"
-      # 1 nur mit dem selbst erzeugten Zertifikat (setzt der Update-Dienst) — App ↔ Mailserver laeuft im Compose-Netz
       RP_MAIL_SELBSTSIGNIERT: ${RP_MAIL_SELBSTSIGNIERT:-1}
 
   mail:
@@ -48,10 +37,8 @@ services:
       ENABLE_CLAMAV: ${RP_MAIL_CLAMAV:-0}
       ENABLE_FAIL2BAN: "0"
       ENABLE_POP3: "0"
-      # Filter + Abwesenheit aus RedPost (Sieve-Skript „redpost“ je Postfach)
       ENABLE_MANAGESIEVE: "1"
       ENABLE_SRS: "1"
-      # Absender nur die eigene Adresse und ihre Aliase (Wegwerf-Adressen sind Aliase)
       SPOOF_PROTECTION: "1"
       MOVE_SPAM_TO_JUNK: "1"
       RSPAMD_LEARN: "1"

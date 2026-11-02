@@ -1,5 +1,3 @@
-# RedPost — Caddy davor: Port 80/443, Zertifikat von Let's Encrypt kommt von selbst.
-# Aktiv, wenn in .env steht:  COMPOSE_FILE=docker-compose.yml:compose.caddy.yml
 services:
   caddy:
     image: caddy:2-alpine

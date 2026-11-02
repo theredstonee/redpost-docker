@@ -1,4 +1,3 @@
-# RedPost Mailserver mit Caddy: docker-mailserver nimmt das Zertifikat, das Caddy fuer RP_MAIL_HOST holt (nur lesen).
 services:
   mail:
     volumes:

@@ -1,19 +1,14 @@
-# RedPost — Caddy holt und verlaengert die SSL-Zertifikate selbst (Let's Encrypt).
-# "On demand": ein Zertifikat gibt es nur fuer die Domain, die im Setup eingerichtet wurde —
-# Caddy fragt dafuer die App (/api/internal/caddy-ask).
 {
 	on_demand_tls {
 		ask http://app:3000/api/internal/caddy-ask
 	}
 }
 
-# HTTP: Setup ueber die IP und Weiterleitung auf HTTPS (macht die App, sobald eine Domain steht).
 :80 {
 	encode gzip zstd
 	reverse_proxy app:3000
 }
 
-# HTTPS fuer die eingerichtete Domain.
 https:// {
 	tls {
 		on_demand

@@ -1,18 +1,20 @@
 {
-  "version": "1.2.1",
+  "version": "1.3.0",
   "datum": "2026-11-02",
   "hinweise": {
     "de": [
-      "Lange Mails lassen sich wieder bis zum Ende scrollen. Die Mail wurde abgeschnitten, auf Handy, Tablet und Desktop.",
-      "Auf dem Handy steht „Neu“ jetzt oben rechts in der Kopfzeile statt schwebend unten.",
-      "Breite Newsletter werden ins Bild eingepasst, und Mails sind nicht mehr auf eine feste Höhe begrenzt.",
-      "Auf dem Handy passt die Ansicht jetzt zur sichtbaren Höhe, auch mit eingeblendeter Browserleiste."
+      "Symbol-Bibliothek: Für Ordner, Etiketten, Postfächer, Logo und Browser-Symbol stehen über 2.000 Symbole mit Suche und Farbauswahl bereit.",
+      "Eigene Symbole lassen sich als SVG, PNG oder WebP hochladen, Bilder mit Zuschnitt. Die Verwaltung entscheidet, ob auch Nutzer hochladen dürfen.",
+      "Der eigene Mailserver lässt sich jetzt auch einschalten, wenn die Weboberfläche über einen Cloudflare Tunnel läuft. Die Seite weist auf die nötigen Ports und den DNS-Eintrag hin.",
+      "Fenster mit X schließen sich nicht mehr durch einen Klick daneben.",
+      "Neuer Installationsweg aus einem fertigen Paket, ohne Image aus dem Register."
     ],
     "en": [
-      "Long e-mails scroll to the end again. They were cut off on phones, tablets and desktops.",
-      "On phones, “New” now sits at the top right of the header instead of floating at the bottom.",
-      "Wide newsletters are fitted to the screen, and e-mails are no longer limited to a fixed height.",
-      "On phones the view now matches the visible height, even with the browser bar showing."
+      "Symbol library: over 2,000 symbols with search and colours for folders, labels, mailboxes, logo and browser icon.",
+      "Upload your own symbols as SVG, PNG or WebP, images with cropping. Administrators decide whether users may upload too.",
+      "The built-in mail server can now be turned on while the web interface runs through a Cloudflare Tunnel. The page points out the required ports and DNS record.",
+      "Windows with an X no longer close when clicking beside them.",
+      "New way to install from a finished package, without an image from the registry."
     ]
   }
 }
