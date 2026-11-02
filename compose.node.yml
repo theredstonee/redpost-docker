@@ -1,4 +1,4 @@
-# RedPost Pro — ein WEITERER Server (Knoten) fuer eine bestehende Installation.
+# RedPost — ein WEITERER Server (Knoten) fuer eine bestehende Installation.
 # Nur die App, ohne eigene Datenbank: sie verbindet sich mit der Datenbank des ersten Servers.
 #
 #   1. Datenbank des ersten Servers fuer diesen erreichbar machen (privates Netz/VPN, Firewall nur
@@ -10,9 +10,6 @@
 #                               RP_NODE_NAME=server-2   RP_PORT=3000
 #   4. docker compose -f compose.node.yml up -d
 #   5. Im Lastverteiler (Caddy, nginx, Traefik) beide Server eintragen, mit Sitzungsbindung.
-#
-# Mehrere Server gleichzeitig gehoeren zu RedPost Pro. Ohne Lizenz pausiert ein zusaetzlicher
-# Server nach 10 Minuten (der erste laeuft normal weiter).
 services:
   app:
     image: ghcr.io/theredstonee/redpost:latest

@@ -510,6 +510,10 @@ bearbeiten() { # bearbeiten <anfrage-datei>
       docker compose stop mail >/dev/null 2>&1; docker compose rm -f mail >/dev/null 2>&1
       for d in compose.mail.yml compose.mail-caddy.yml compose.mail-le.yml; do datei_an aus "$d"; done
       if out=$(docker compose up -d app 2>&1); then schreib "$id" "" fertig ""; else schreib "$id" "" fehler "$(kurz "$out")"; fi ;;
+    mail-neustart)
+      # Einstellungen, die der Mailserver nur beim Start liest (Absender, DKIM, Relay)
+      schreib "$id" "" laeuft ""
+      if out=$(docker compose restart mail 2>&1); then schreib "$id" "" fertig ""; else schreib "$id" "" fehler "$(kurz "$out")"; fi ;;
     mail-ordner-weg)
       # gespeicherte Mails eines geloeschten Postfachs — Adresse streng pruefen (kein „..“, kein „/“)
       local lok="${adr%@*}" mdom="${adr#*@}"
@@ -602,7 +606,7 @@ SKRIPT
   fi
   [ -n "$ausloeser" ] || { DIENST_GRUND="$(s "Weder systemd noch cron laufen auf diesem Server – ohne einen davon kann der Knopf im Panel nichts ausloesen." "Neither systemd nor cron is running on this server – without one the panel button cannot trigger anything.")"; return 1; }
   auftrags_ordner "$daten"
-  printf '%s\naktionen=update tunnel mail mail-an mail-aus mail-ordner-weg anfragen webserver\nstand=5\n' "$PWD" | ablegen "$daten/.updater" \
+  printf '%s\naktionen=update tunnel mail mail-an mail-aus mail-neustart mail-ordner-weg anfragen webserver\nstand=6\n' "$PWD" | ablegen "$daten/.updater" \
     || { DIENST_GRUND="$(s "Die Marker-Datei liess sich im Datenordner nicht ablegen." "The marker file could not be written into the data folder.")"; return 1; }
   # gleich einmal fuer den Assistenten festhalten, welcher Webserver da ist (spaeter frisch per Aktion „webserver-info“)
   { ws_info | ablegen "$daten/.webserver-info"; } 2>/dev/null || true

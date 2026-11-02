@@ -1,16 +1,18 @@
 {
-  "version": "1.1.4",
-  "datum": "2026-11-01",
+  "version": "1.2.0",
+  "datum": "2026-11-02",
   "hinweise": {
     "de": [
-      "Behoben: Der eigene Mailserver ließ sich nicht starten, weil RedPost den Dienst auf dem Server fälschlich für zu alt hielt. Auch das Löschen der Mail-Ordner entfernter Postfächer lief deshalb nicht.",
-      "Behoben: Der Installer zeigte das Logo und die Beschreibung eines anderen Produkts.",
-      "Behoben: Die Einrichtung des Webservers brach ab, wenn nginx gerade nicht lief."
+      "RedPost ist jetzt komplett kostenlos: Organisationen, mehrere Mailserver, gemeinsame Postfächer, Umzug, Sicherung, Zustellbarkeits-Monitor, eigene Marke und mehrere App-Server gehen ohne Lizenz.",
+      "Bessere Zustellung beim eigenen Mailserver: Weitere Domains behalten ihren Absender im Umschlag, statt ihn auf eine SRS0-Adresse umzuschreiben. Das konnte Verteiler zum Ablehnen bringen. Mails von einem Alias auf einer anderen Domain tragen jetzt eine DKIM-Signatur. Der Mailserver startet nach dem Update einmal von selbst neu.",
+      "Zustellbarkeit: Spamhaus wird jetzt direkt abgefragt und meldet nicht mehr nur „unklar“. Nicht geprüfte Listen gelten nicht mehr als sauber.",
+      "Symbole haben überall eine feste Standardgröße und werden nicht mehr übergroß."
     ],
     "en": [
-      "Fixed: the built-in mail server could not be started because RedPost wrongly considered the service on the server too old. Deleting the mail folders of removed mailboxes did not run for the same reason.",
-      "Fixed: the installer showed the logo and description of another product.",
-      "Fixed: web server setup failed when nginx was not running."
+      "RedPost is now completely free: organisations, multiple mail servers, shared mailboxes, migration, backup, deliverability monitor, custom branding and multiple app servers work without a licence.",
+      "Better delivery with the built-in mail server: additional domains keep their envelope sender instead of being rewritten to an SRS0 address, which could make mailing lists reject them. Mail from an alias on another domain now carries a DKIM signature. The mail server restarts once by itself after the update.",
+      "Deliverability: Spamhaus is now queried directly instead of only reporting “unclear”. Lists that could not be checked no longer count as clean.",
+      "Icons have a fixed default size everywhere and no longer turn oversized."
     ]
   }
 }

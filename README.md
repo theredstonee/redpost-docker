@@ -2,7 +2,7 @@
 
 **Selbst gehostete E-Mail mit Kalender und Kontakten**: ein schnelles Webmail für deine bisherigen Postfächer – oder gleich mit eigenem Mailserver für deine Domains. RedPost läuft als Docker-Paket auf deinem Server und holt das HTTPS-Zertifikat selbst.
 
-By [TheRedStonee](https://www.theredstonee.de/) · kostenlos nutzbar, **Pro** für Teams, Vereine und Anbieter
+By [TheRedStonee](https://www.theredstonee.de/) · komplett kostenlos, ohne Lizenzschlüssel
 
 > **English:** Self-hosted e-mail with calendar and contacts. A fast webmail for your existing mailboxes (IMAP/SMTP) – or with a built-in mail server (docker-mailserver: Postfix, Dovecot, Rspamd, DKIM) for your own domains. Conversations, full-text search, labels, snooze, follow-up reminders, focus mode, filters and out-of-office via Sieve, phishing warnings, tracking protection, disposable addresses, confidential e-mails with expiry, PGP encryption in the browser, CalDAV/CardDAV sync with phones and desktop apps, installable as an app with push notifications. One `docker compose up`, automatic HTTPS via Let's Encrypt. German and English. Jump to [Quick start](#schnellstart).
 
@@ -32,12 +32,11 @@ By [TheRedStonee](https://www.theredstonee.de/) · kostenlos nutzbar, **Pro** f�
 - DNS-Assistent (auch automatisch über Cloudflare), Zustellbarkeits-Monitor (Sperrlisten, DNS, Zertifikat, Warteschlange)
 - Umzug vom alten Anbieter (komplette IMAP-Übernahme im Hintergrund), tägliche Postfach-Sicherung mit Wiederherstellen
 
-### Pro
+### Für Teams, Vereine und Anbieter
 
 - **Mehrere Mailserver** und fremde Server nebeneinander
 - **Anbieter-Modus:** Organisationen mit eigenen Domains, Kontingenten und Admins, Selbstbedienung mit eigenem Logo
 - **Gemeinsame Postfächer** mit Zuweisung, internen Notizen und „wer antwortet gerade“
-- **Umzug** vom alten Anbieter, **Postfach-Sicherung**, **Zustellbarkeits-Monitor**
 - **Eigene Marke** (Logo, Name, Farben) und **mehrere App-Server** (`compose.node.yml`)
 
 ## Voraussetzungen
@@ -134,13 +133,13 @@ Im Panel: unten links steht die Version – ein roter Punkt heißt „neue Versi
 curl -fsSL https://raw.githubusercontent.com/theredstonee/redpost-docker/main/update.sh | sudo bash
 ```
 
-## Pro einrichten
+## Mehrere App-Server
 
-Panel → **Pro & Lizenz** → Schlüssel eingeben. Ohne Internet: die Offline-Lizenzdatei im Kunden-Portal mit der angezeigten Geräte-ID erstellen und hineinziehen. Weitere App-Server: siehe `compose.node.yml` (gemeinsame Datenbank des ersten Servers, im Lastverteiler Sitzungsbindung einschalten).
+Weitere App-Server für dieselbe Installation: siehe `compose.node.yml`.
 
 ## Sicherung
 
-- **Postfächer (eigener Mailserver):** Verwaltung → **Sicherung** – täglich automatisch, Wiederherstellen auch durch die Nutzer selbst (Pro).
+- **Postfächer (eigener Mailserver):** Verwaltung → **Sicherung** – täglich automatisch, Wiederherstellen auch durch die Nutzer selbst.
 - **Von Hand:** Datenbank `docker compose exec db pg_dump -U redpost redpost > redpost.sql`, dazu die Volumes `maildaten` (Mails), `mailkonfig` (Konten, DKIM), `radicale` (Kalender, Kontakte) und `daten`.
 
 ## Entfernen

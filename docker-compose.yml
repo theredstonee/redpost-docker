@@ -26,7 +26,7 @@ services:
       RP_RESET_2FA: ${RP_RESET_2FA:-}
       # Sprache bis zur Einrichtung (de|en) — fragt install.sh ab; danach gilt die Einstellung im Panel
       RP_LANG: ${RP_LANG:-de}
-      # Pro — mehrere Server: Name dieses Servers in der Server-Liste (sonst der Container-Name)
+      # Mehrere Server: Name dieses Servers in der Server-Liste (sonst der Container-Name)
       RP_NODE_NAME: ${RP_NODE_NAME:-}
       # Kalender und Kontakte (CalDAV/CardDAV): Dienst "radicale" unten, erreichbar nur ueber RedPost (/dav)
       RP_RADICALE: http://radicale:5232
