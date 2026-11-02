@@ -1,18 +1,18 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.1",
   "datum": "2026-11-02",
   "hinweise": {
     "de": [
-      "RedPost ist jetzt komplett kostenlos: Organisationen, mehrere Mailserver, gemeinsame Postfächer, Umzug, Sicherung, Zustellbarkeits-Monitor, eigene Marke und mehrere App-Server gehen ohne Lizenz.",
-      "Bessere Zustellung beim eigenen Mailserver: Weitere Domains behalten ihren Absender im Umschlag, statt ihn auf eine SRS0-Adresse umzuschreiben. Das konnte Verteiler zum Ablehnen bringen. Mails von einem Alias auf einer anderen Domain tragen jetzt eine DKIM-Signatur. Der Mailserver startet nach dem Update einmal von selbst neu.",
-      "Zustellbarkeit: Spamhaus wird jetzt direkt abgefragt und meldet nicht mehr nur „unklar“. Nicht geprüfte Listen gelten nicht mehr als sauber.",
-      "Symbole haben überall eine feste Standardgröße und werden nicht mehr übergroß."
+      "Lange Mails lassen sich wieder bis zum Ende scrollen. Die Mail wurde abgeschnitten, auf Handy, Tablet und Desktop.",
+      "Auf dem Handy steht „Neu“ jetzt oben rechts in der Kopfzeile statt schwebend unten.",
+      "Breite Newsletter werden ins Bild eingepasst, und Mails sind nicht mehr auf eine feste Höhe begrenzt.",
+      "Auf dem Handy passt die Ansicht jetzt zur sichtbaren Höhe, auch mit eingeblendeter Browserleiste."
     ],
     "en": [
-      "RedPost is now completely free: organisations, multiple mail servers, shared mailboxes, migration, backup, deliverability monitor, custom branding and multiple app servers work without a licence.",
-      "Better delivery with the built-in mail server: additional domains keep their envelope sender instead of being rewritten to an SRS0 address, which could make mailing lists reject them. Mail from an alias on another domain now carries a DKIM signature. The mail server restarts once by itself after the update.",
-      "Deliverability: Spamhaus is now queried directly instead of only reporting “unclear”. Lists that could not be checked no longer count as clean.",
-      "Icons have a fixed default size everywhere and no longer turn oversized."
+      "Long e-mails scroll to the end again. They were cut off on phones, tablets and desktops.",
+      "On phones, “New” now sits at the top right of the header instead of floating at the bottom.",
+      "Wide newsletters are fitted to the screen, and e-mails are no longer limited to a fixed height.",
+      "On phones the view now matches the visible height, even with the browser bar showing."
     ]
   }
 }
