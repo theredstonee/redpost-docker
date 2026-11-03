@@ -1,22 +1,16 @@
 {
-  "version": "1.3.1",
+  "version": "1.3.2",
   "datum": "2026-11-03",
   "hinweise": {
     "de": [
-      "Mails lassen sich auf dem Handy jetzt auch dann bis zum Ende scrollen, wenn die Mail eigene Höhenangaben mitbringt. Solche Newsletter wurden bisher abgeschnitten und waren nicht scrollbar.",
-      "Neues Handy-Design: Der Kopf zeigt den aktuellen Ordner, die Reiter unten tragen Namen, und Mails nutzen die volle Breite ohne Rahmen.",
-      "Beim Lesen auf dem Handy liegen Antworten, Weiterleiten, Archivieren und Löschen unten am Daumen, die Reiter blenden sich so lange aus.",
-      "„Senden“ steht beim Verfassen auf dem Handy oben, damit die Tastatur den Knopf nicht verdeckt.",
-      "Breite Mails werden nach dem Drehen des Handys neu eingepasst und auf dem Desktop rechts nicht mehr abgeschnitten.",
-      "Die installierte App nutzt die volle Bildschirmfläche, die Statusleiste passt zum Thema, und Eingabefelder zoomen beim Antippen nicht mehr."
+      "Mails passen sich jetzt dem dunklen Thema an: Helle Flächen werden dunkel, Text bleibt gut lesbar, Markenfarben, Knöpfe und Bilder bleiben erhalten.",
+      "Über „Hell anzeigen“ lässt sich jede Mail im Original lesen. In den Einstellungen unter „Post“ kann das Abdunkeln ganz abgeschaltet werden.",
+      "Noch mehr Mails lassen sich bis zum Ende scrollen, etwa solche mit festen Kopfzeilen oder eigenen Scrollbereichen."
     ],
     "en": [
-      "E-mails on phones now scroll to the end even when the e-mail brings its own height settings. Such newsletters used to be cut off and could not be scrolled.",
-      "New phone design: the header shows the current folder, the tabs at the bottom have names, and e-mails use the full width without a frame.",
-      "While reading on a phone, reply, forward, archive and delete sit at the bottom within thumb reach, and the tabs hide in the meantime.",
-      "“Send” sits at the top when composing on a phone, so the keyboard does not cover the button.",
-      "Wide e-mails are fitted again after rotating the phone and are no longer cut off on the right on desktop.",
-      "The installed app uses the full screen, the status bar matches the theme, and input fields no longer zoom when tapped."
+      "E-mails now adapt to the dark theme: light areas turn dark, text stays readable, and brand colours, buttons and images are kept.",
+      "“Show light” displays any e-mail in its original form. Darkening can be turned off completely under “Mail” in the settings.",
+      "Even more e-mails scroll to the end, such as those with fixed headers or their own scroll areas."
     ]
   }
 }
