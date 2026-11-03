@@ -1,20 +1,22 @@
 {
-  "version": "1.3.0",
-  "datum": "2026-11-02",
+  "version": "1.3.1",
+  "datum": "2026-11-03",
   "hinweise": {
     "de": [
-      "Symbol-Bibliothek: Für Ordner, Etiketten, Postfächer, Logo und Browser-Symbol stehen über 2.000 Symbole mit Suche und Farbauswahl bereit.",
-      "Eigene Symbole lassen sich als SVG, PNG oder WebP hochladen, Bilder mit Zuschnitt. Die Verwaltung entscheidet, ob auch Nutzer hochladen dürfen.",
-      "Der eigene Mailserver lässt sich jetzt auch einschalten, wenn die Weboberfläche über einen Cloudflare Tunnel läuft. Die Seite weist auf die nötigen Ports und den DNS-Eintrag hin.",
-      "Fenster mit X schließen sich nicht mehr durch einen Klick daneben.",
-      "Neuer Installationsweg aus einem fertigen Paket, ohne Image aus dem Register."
+      "Mails lassen sich auf dem Handy jetzt auch dann bis zum Ende scrollen, wenn die Mail eigene Höhenangaben mitbringt. Solche Newsletter wurden bisher abgeschnitten und waren nicht scrollbar.",
+      "Neues Handy-Design: Der Kopf zeigt den aktuellen Ordner, die Reiter unten tragen Namen, und Mails nutzen die volle Breite ohne Rahmen.",
+      "Beim Lesen auf dem Handy liegen Antworten, Weiterleiten, Archivieren und Löschen unten am Daumen, die Reiter blenden sich so lange aus.",
+      "„Senden“ steht beim Verfassen auf dem Handy oben, damit die Tastatur den Knopf nicht verdeckt.",
+      "Breite Mails werden nach dem Drehen des Handys neu eingepasst und auf dem Desktop rechts nicht mehr abgeschnitten.",
+      "Die installierte App nutzt die volle Bildschirmfläche, die Statusleiste passt zum Thema, und Eingabefelder zoomen beim Antippen nicht mehr."
     ],
     "en": [
-      "Symbol library: over 2,000 symbols with search and colours for folders, labels, mailboxes, logo and browser icon.",
-      "Upload your own symbols as SVG, PNG or WebP, images with cropping. Administrators decide whether users may upload too.",
-      "The built-in mail server can now be turned on while the web interface runs through a Cloudflare Tunnel. The page points out the required ports and DNS record.",
-      "Windows with an X no longer close when clicking beside them.",
-      "New way to install from a finished package, without an image from the registry."
+      "E-mails on phones now scroll to the end even when the e-mail brings its own height settings. Such newsletters used to be cut off and could not be scrolled.",
+      "New phone design: the header shows the current folder, the tabs at the bottom have names, and e-mails use the full width without a frame.",
+      "While reading on a phone, reply, forward, archive and delete sit at the bottom within thumb reach, and the tabs hide in the meantime.",
+      "“Send” sits at the top when composing on a phone, so the keyboard does not cover the button.",
+      "Wide e-mails are fitted again after rotating the phone and are no longer cut off on the right on desktop.",
+      "The installed app uses the full screen, the status bar matches the theme, and input fields no longer zoom when tapped."
     ]
   }
 }
