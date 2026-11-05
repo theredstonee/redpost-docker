@@ -1,16 +1,20 @@
 {
-  "version": "1.3.3",
-  "datum": "2026-11-03",
+  "version": "1.4.0",
+  "datum": "2026-11-05",
   "hinweise": {
     "de": [
-      "Auf Handys und Tablets lassen sich Mails jetzt auch beim Wischen direkt auf dem Mailtext scrollen. Auf manchen Geräten reagierte bisher nur der Bereich über der Mail.",
-      "Links in Mails öffnen sich weiterhin per Antippen.",
-      "Zum Markieren und Kopieren von Mailtext gibt es auf Touch-Geräten im Menü den neuen Punkt „Text auswählen“."
+      "Mails und Konversationen lassen sich mit der Maus auf Ordner ziehen, auch mehrere markierte auf einmal.",
+      "Eigene Ordner lassen sich in andere Ordner legen und wieder herausholen, per Ziehen oder über das Ordner-Menü. Filter und Symbole ziehen mit.",
+      "Nach dem Verschieben kannst du es 10 Sekunden lang rückgängig machen.",
+      "Auf Handy und Tablet bleibt alles wie gewohnt beim Menü.",
+      "Behoben: Umbenennen holte Unterordner auf die oberste Ebene, und Unterordner standen nicht immer direkt unter ihrem Ordner."
     ],
     "en": [
-      "On phones and tablets, e-mails now scroll when swiping directly on the text. On some devices only the area above the e-mail reacted so far.",
-      "Links in e-mails still open with a tap.",
-      "To select and copy e-mail text on touch devices, the menu has a new “Select text” item."
+      "Drag e-mails and conversations onto folders with the mouse, including several selected ones at once.",
+      "Move your own folders into other folders and back out, by dragging or from the folder menu. Filters and symbols follow along.",
+      "You can undo a move for 10 seconds.",
+      "Phones and tablets keep using the menu as before.",
+      "Fixed: renaming moved subfolders to the top level, and subfolders did not always appear directly below their folder."
     ]
   }
 }
