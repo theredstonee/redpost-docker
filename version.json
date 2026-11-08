@@ -1,18 +1,18 @@
 {
-  "version": "1.5.0",
+  "version": "1.5.1",
   "datum": "2026-11-08",
   "hinweise": {
     "de": [
-      "Eigenes HTML als Mail: Im Verfassen-Fenster zwischen „Schreiben“ und „HTML“ umschalten, Quelltext einfügen oder eine .html-Datei laden. Daneben siehst du live, was beim Empfänger ankommt.",
-      "Beim Senden bereitet RedPost das HTML auf: Stile werden direkt an die Elemente geschrieben (für Gmail und Outlook), eingefügte Bilder werden eingebettet, eine Nur-Text-Fassung kommt dazu, und Skripte, Formulare und Ereignis-Attribute werden entfernt.",
-      "Eigene E-Mail-Designs aus HTML mit den Platzhaltern {{inhalt}}, {{betreff}}, {{absender}} und {{datum}}. Signaturen und Vorlagen lassen sich ebenfalls als HTML-Quelltext anlegen.",
-      "Entwürfe behalten Quelltext, Stile und Bilder und öffnen wieder im HTML-Modus."
+      "Anmeldung bei einem externen Mailserver: Statt pauschal „Mailserver nicht erreichbar“ steht jetzt der echte Grund da, etwa Port geschlossen, TLS passt nicht zum Port, Zertifikat wird nicht akzeptiert oder Name nicht auflösbar.",
+      "Hat der Mailserver einen IPv6-Eintrag, verbindet RedPost zuerst über IPv4. Docker-Netze haben meist kein IPv6, dadurch scheiterte die Anmeldung, obwohl der Server lief.",
+      "Ein nicht erreichbarer Mailserver zählt nicht mehr als falsches Passwort und sperrt die IP nicht mehr nach 8 Versuchen.",
+      "Der volle Fehlergrund steht im Container-Log (docker compose logs app) und im Ereignis-Protokoll der Verwaltung."
     ],
     "en": [
-      "Your own HTML as an e-mail: switch between “Write” and “HTML” in the compose window, paste source code or load an .html file. Next to it you see live what the recipient gets.",
-      "When sending, RedPost prepares the HTML: styles are written onto the elements (for Gmail and Outlook), inserted images are embedded, a plain-text version is added, and scripts, forms and event attributes are removed.",
-      "Custom HTML e-mail designs with the placeholders {{inhalt}} (content), {{betreff}} (subject), {{absender}} (sender) and {{datum}} (date). Signatures and templates can also be written as HTML source.",
-      "Drafts keep source code, styles and images and reopen in HTML mode."
+      "Signing in with an external mail server: instead of a generic “mail server not reachable” you now see the real reason, such as port closed, TLS does not match the port, certificate not accepted or name cannot be resolved.",
+      "If the mail server has an IPv6 record, RedPost now connects via IPv4 first. Docker networks usually have no IPv6, so sign-in failed although the server was running.",
+      "An unreachable mail server no longer counts as a wrong password and no longer locks the IP after 8 attempts.",
+      "The full error is written to the container log (docker compose logs app) and to the admin event log."
     ]
   }
 }
