@@ -1,20 +1,18 @@
 {
-  "version": "1.4.0",
-  "datum": "2026-11-05",
+  "version": "1.5.0",
+  "datum": "2026-11-08",
   "hinweise": {
     "de": [
-      "Mails und Konversationen lassen sich mit der Maus auf Ordner ziehen, auch mehrere markierte auf einmal.",
-      "Eigene Ordner lassen sich in andere Ordner legen und wieder herausholen, per Ziehen oder über das Ordner-Menü. Filter und Symbole ziehen mit.",
-      "Nach dem Verschieben kannst du es 10 Sekunden lang rückgängig machen.",
-      "Auf Handy und Tablet bleibt alles wie gewohnt beim Menü.",
-      "Behoben: Umbenennen holte Unterordner auf die oberste Ebene, und Unterordner standen nicht immer direkt unter ihrem Ordner."
+      "Eigenes HTML als Mail: Im Verfassen-Fenster zwischen „Schreiben“ und „HTML“ umschalten, Quelltext einfügen oder eine .html-Datei laden. Daneben siehst du live, was beim Empfänger ankommt.",
+      "Beim Senden bereitet RedPost das HTML auf: Stile werden direkt an die Elemente geschrieben (für Gmail und Outlook), eingefügte Bilder werden eingebettet, eine Nur-Text-Fassung kommt dazu, und Skripte, Formulare und Ereignis-Attribute werden entfernt.",
+      "Eigene E-Mail-Designs aus HTML mit den Platzhaltern {{inhalt}}, {{betreff}}, {{absender}} und {{datum}}. Signaturen und Vorlagen lassen sich ebenfalls als HTML-Quelltext anlegen.",
+      "Entwürfe behalten Quelltext, Stile und Bilder und öffnen wieder im HTML-Modus."
     ],
     "en": [
-      "Drag e-mails and conversations onto folders with the mouse, including several selected ones at once.",
-      "Move your own folders into other folders and back out, by dragging or from the folder menu. Filters and symbols follow along.",
-      "You can undo a move for 10 seconds.",
-      "Phones and tablets keep using the menu as before.",
-      "Fixed: renaming moved subfolders to the top level, and subfolders did not always appear directly below their folder."
+      "Your own HTML as an e-mail: switch between “Write” and “HTML” in the compose window, paste source code or load an .html file. Next to it you see live what the recipient gets.",
+      "When sending, RedPost prepares the HTML: styles are written onto the elements (for Gmail and Outlook), inserted images are embedded, a plain-text version is added, and scripts, forms and event attributes are removed.",
+      "Custom HTML e-mail designs with the placeholders {{inhalt}} (content), {{betreff}} (subject), {{absender}} (sender) and {{datum}} (date). Signatures and templates can also be written as HTML source.",
+      "Drafts keep source code, styles and images and reopen in HTML mode."
     ]
   }
 }
