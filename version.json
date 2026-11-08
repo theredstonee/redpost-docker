@@ -1,18 +1,16 @@
 {
-  "version": "1.5.1",
+  "version": "1.5.2",
   "datum": "2026-11-08",
   "hinweise": {
     "de": [
-      "Anmeldung bei einem externen Mailserver: Statt pauschal „Mailserver nicht erreichbar“ steht jetzt der echte Grund da, etwa Port geschlossen, TLS passt nicht zum Port, Zertifikat wird nicht akzeptiert oder Name nicht auflösbar.",
-      "Hat der Mailserver einen IPv6-Eintrag, verbindet RedPost zuerst über IPv4. Docker-Netze haben meist kein IPv6, dadurch scheiterte die Anmeldung, obwohl der Server lief.",
-      "Ein nicht erreichbarer Mailserver zählt nicht mehr als falsches Passwort und sperrt die IP nicht mehr nach 8 Versuchen.",
-      "Der volle Fehlergrund steht im Container-Log (docker compose logs app) und im Ereignis-Protokoll der Verwaltung."
+      "Externer Mailserver „nicht auflösbar“, obwohl der Name auf dem Server selbst funktioniert: Scheitert das DNS im Container (etwa weil der Server einen lokalen Resolver nutzt), fragt RedPost jetzt direkt öffentliche DNS-Server und merkt sich die letzte funktionierende Adresse.",
+      "Die Meldung nennt jetzt den genauen Grund (zum Beispiel EAI_AGAIN), und im Container-Log steht, welcher Weg geholfen hat.",
+      "Die Handy-App meldet sich sofort beim Öffnen an und ist damit gleich installierbar."
     ],
     "en": [
-      "Signing in with an external mail server: instead of a generic “mail server not reachable” you now see the real reason, such as port closed, TLS does not match the port, certificate not accepted or name cannot be resolved.",
-      "If the mail server has an IPv6 record, RedPost now connects via IPv4 first. Docker networks usually have no IPv6, so sign-in failed although the server was running.",
-      "An unreachable mail server no longer counts as a wrong password and no longer locks the IP after 8 attempts.",
-      "The full error is written to the container log (docker compose logs app) and to the admin event log."
+      "External mail server “cannot be resolved” although the name works on the server itself: if DNS fails inside the container (for example because the server uses a local resolver), RedPost now asks public DNS servers directly and remembers the last working address.",
+      "The message now names the exact reason (for example EAI_AGAIN), and the container log shows which route helped.",
+      "The phone app registers right when it opens and can be installed immediately."
     ]
   }
 }
